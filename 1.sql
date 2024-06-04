@@ -27,8 +27,8 @@ ALTER TABLE customer DROP COLUMN age;
 SELECT * FROM customer;
 
 (e)
-ALTER TABLE customer MODIFY COLUMN cust_name  varchar(25);
-SELECT * FROM customer;
+ALTER TABLE customer ALTER COLUMN cust_name  varchar(25);
+\D customer;
 
 (f)
 DELETE FROM customer;
@@ -36,7 +36,7 @@ SELECT * FROM customer;
 
 (g)
 ALTER TABLE customer RENAME  TO cust;
-SELECT * FROM cust;
+\D cust;
 
 (h)
 DROP TABLE cust;
