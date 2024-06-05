@@ -27,7 +27,7 @@ ALTER TABLE customer DROP COLUMN age;
 SELECT * FROM customer;
 
 (e)
-ALTER TABLE customer ALTER COLUMN cust_name  varchar(25);
+ALTER TABLE customer ALTER COLUMN cust_name TYPE varchar(25);
 \D customer;
 
 (f)
