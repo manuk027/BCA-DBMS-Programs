@@ -1,24 +1,23 @@
 CREATE TABLE sale_man (
-    salesman_no VARCHAR(5), 
-    s_name VARCHAR(25) NOT NULL, 
-    place VARCHAR(30), 
-    phone VARCHAR(10) UNIQUE, 
-    PRIMARY KEY(salesman_no)
+salesman_no VARCHAR(5), 
+s_name VARCHAR(25) NOT NULL, 
+place VARCHAR(30), 
+phone VARCHAR(10) UNIQUE, 
+PRIMARY KEY(salesman_no)
 );
 
 CREATE TABLE sales_order (
-    order_no VARCHAR(10),  
-    order_date DATE NOT NULL, 
-    salesman_no VARCHAR(5), 
-    del_type CHAR(1), 
-    order_status VARCHAR(10),
-    PRIMARY KEY(order_no),
-    FOREIGN KEY(salesman_no) REFERENCES sale_man(salesman_no), 
-    CHECK (del_type IN ('P', 'F')),
-    CHECK (order_status IN ('Inprocess', 'Fulfilled', 'Backorder', 'Cancelled'))
+order_no VARCHAR(10),  
+order_date DATE NOT NULL, 
+salesman_no VARCHAR(5), 
+del_type CHAR(1), 
+order_status VARCHAR(10),
+PRIMARY KEY(order_no),
+FOREIGN KEY(salesman_no) REFERENCES sale_man(salesman_no), 
+CHECK (del_type IN ('P', 'F')),
+CHECK (order_status IN ('Inprocess', 'Fulfilled', 'Backorder', 'Cancelled'))
 );
 
-(a)
 INSERT INTO sale_man(salesman_no, s_name, place, phone) VALUES('00001', 'Arjun', 'Mumbai', '8281337921');
 INSERT INTO sale_man(salesman_no, s_name, place, phone) VALUES('00002', 'Ravi', 'Bengaluru', '8281337931');
 INSERT INTO sale_man(salesman_no, s_name, place, phone) VALUES('00003', 'Sanjay', 'Jaipur', '8281337942');
@@ -32,3 +31,7 @@ INSERT INTO sales_order(order_no, order_date, salesman_no, del_type, order_statu
 SELECT * FROM sale_man;
 SELECT * FROM sales_order;
 
+ALTER TABLE sales_order DROP CONSTRAINT sales_order_salesman_no_fkey;
+ALTER TABLE sales_order DROP CONSTRAINT sales_order_del_type_check;
+ALTER TABLE sales_order DROP CONSTRAINT sales_order_order_status_check;
+\d sales_order;
