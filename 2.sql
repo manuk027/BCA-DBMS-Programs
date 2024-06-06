@@ -18,6 +18,7 @@ CHECK (del_type IN ('P', 'F')),
 CHECK (order_status IN ('Inprocess', 'Fulfilled', 'Backorder', 'Cancelled'))
 );
 
+(a)
 INSERT INTO sale_man(salesman_no, s_name, place, phone) VALUES('00001', 'Arjun', 'Mumbai', '8281337921');
 INSERT INTO sale_man(salesman_no, s_name, place, phone) VALUES('00002', 'Ravi', 'Bengaluru', '8281337931');
 INSERT INTO sale_man(salesman_no, s_name, place, phone) VALUES('00003', 'Sanjay', 'Jaipur', '8281337942');
@@ -31,7 +32,14 @@ INSERT INTO sales_order(order_no, order_date, salesman_no, del_type, order_statu
 SELECT * FROM sale_man;
 SELECT * FROM sales_order;
 
+(c)
 ALTER TABLE sales_order DROP CONSTRAINT sales_order_salesman_no_fkey;
 ALTER TABLE sales_order DROP CONSTRAINT sales_order_del_type_check;
 ALTER TABLE sales_order DROP CONSTRAINT sales_order_order_status_check;
+\d sales_order;
+
+(e)
+ALTER TABLE sales_order ADD CONSTRAINT fk_salesman FOREIGN KEY (salesman_no) REFERENCES sale_man(salesman_no);
+ALTER TABLE sales_order ADD CONSTRAINT chk_del_type CHECK (del_type IN ('P', 'F'));
+ALTER TABLE sales_order ADD CONSTRAINT chk_order_status CHECK (order_status IN ('Inprocess', 'Fulfilled', 'Backorder', 'Cancelled'));
 \d sales_order;
