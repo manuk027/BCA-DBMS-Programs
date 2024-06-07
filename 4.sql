@@ -37,6 +37,7 @@ JOIN Deposit d ON bc.accno = d.accno
 JOIN Loan l ON bc.accno = l.accno
 ORDER BY bc.accno;
 
+(e)
 SELECT bc.accno, bc.cust_name, bc.place
 FROM Bank_customer bc
 LEFT JOIN Deposit d ON bc.accno = d.accno
