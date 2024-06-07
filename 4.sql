@@ -1,6 +1,25 @@
-CREATE TABLE Bank_customer(accno VARCHAR(10), cust_name VARCHAR(15), place VARCHAR(25), PRIMARY KEY(accno));
-CREATE TABLE Deposit(accno VARCHAR(10), deposit_no VARCHAR(10), damount INT, PRIMARY KEY(deposit_no), FOREIGN KEY(accno) REFERENCES Bank_customer(accno));
-CREATE TABLE Loan(accno VARCHAR(10), loan_no VARCHAR(10), lamount INT, PRIMARY KEY(loan_no), FOREIGN KEY(accno) REFERENCES Bank_customer(accno));
+CREATE TABLE Bank_customer(
+accno VARCHAR(10), 
+cust_name VARCHAR(15), p
+lace VARCHAR(25), 
+PRIMARY KEY(accno)
+);
+
+CREATE TABLE Deposit(
+accno VARCHAR(10), 
+deposit_no VARCHAR(10), 
+damount INT, 
+PRIMARY KEY(deposit_no), 
+FOREIGN KEY(accno) REFERENCES Bank_customer(accno)
+);
+
+CREATE TABLE Loan(
+accno VARCHAR(10), 
+loan_no VARCHAR(10), 
+lamount INT, 
+PRIMARY KEY(loan_no), 
+FOREIGN KEY(accno VM) REFERENCES Bank_customer(accno)
+);
 
 INSERT INTO Bank_customer VALUES('AC001', 'Eleanor', 'Delhi');
 INSERT INTO Bank_customer VALUES('AC002', 'Nathaniel', 'Mumbai');
