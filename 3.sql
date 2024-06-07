@@ -1,4 +1,9 @@
-CREATE TABLE Hospital(doctorid VARCHAR(5), docatorname VARCHAR(25), department VARCHAR(15), qualification VARCHAR(10), experience INT);
+CREATE TABLE Hospital(
+doctorid VARCHAR(5), 
+docatorname VARCHAR(25), 
+department VARCHAR(15), 
+qualification VARCHAR(10), 
+experience INT);
 
 (a)
 INSERT INTO Hospital VALUES('D001', 'Eleanor', 'Skin', 'MBBS', 5);
