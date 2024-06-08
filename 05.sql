@@ -1,9 +1,9 @@
 CREATE TABLE employee(
-empid VARCHAR(5), 
-ename VARCHAR(10), 
-salary INT, 
-department VARCHAR(15), 
-age INT
+EmpID VARCHAR(5), 
+EName VARCHAR(10), 
+Salary INT, 
+Department VARCHAR(15), 
+Age INT
 );
 INSERT INTO employee VALUES
 ('E001', 'Raju', 50000, 'HR', 33), 
@@ -17,22 +17,22 @@ INSERT INTO employee VALUES
 SELECT COUNT(*) FROM employee;
 
 (b)
-SELECT ename, age, department FROM employee WHERE age IN (SELECT MAX(age) FROM employee GROUP BY department);
+SELECT EName, Age, Department FROM employee WHERE Age IN (SELECT MAX(Age) FROM employee GROUP BY Department);
 
 (c)
-SELECT department,AVG(age) FROM employee GROUP BY department;
+SELECT Department, AVG(Age) FROM employee GROUP BY Department;
 
 (d)
-SELECT department,AVG(salary) FROM employee GROUP BY department;
+SELECT Department, AVG(Salary) FROM employee GROUP BY Department;
 
 (e)
-SELECT MIN(salary) FROM employee;
+SELECT MIN(Salary) FROM employee;
 
 (f)
-SELECT COUNT(*) FROM employee WHERE department='Purchase';
+SELECT COUNT(*) FROM employee WHERE Department='Purchase';
 
 (g)
-SELECT MAX(salary) FROM employee WHERE department='Sales';
+SELECT MAX(Salary) FROM employee WHERE Department='Sales';
 
 (h)
-SELECT MAX(salary)-MIN(salary) AS "differnce" FROM employee;
+SELECT MAX(Salary)-MIN(Salary) AS "differnce" FROM employee;
