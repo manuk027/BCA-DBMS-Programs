@@ -1,7 +1,7 @@
 CREATE TABLE Bank_customer(
 accno VARCHAR(10), 
-cust_name VARCHAR(15), p
-lace VARCHAR(25), 
+cust_name VARCHAR(15), 
+place VARCHAR(25), 
 PRIMARY KEY(accno)
 );
 
@@ -18,7 +18,7 @@ accno VARCHAR(10),
 loan_no VARCHAR(10), 
 lamount INT, 
 PRIMARY KEY(loan_no), 
-FOREIGN KEY(accno VM) REFERENCES Bank_customer(accno)
+FOREIGN KEY(accno) REFERENCES Bank_customer(accno)
 );
 
 INSERT INTO Bank_customer VALUES('AC001', 'Eleanor', 'Delhi');
