@@ -39,7 +39,7 @@ ALTER TABLE sales_order DROP CONSTRAINT sales_order_order_status_check;
 \d sales_order;
 
 (e)
-ALTER TABLE sales_order ADD CONSTRAINT salesman FOREIGN KEY (salesman_no) REFERENCES sale_man(salesman_no);
+ALTER TABLE sales_order ADD CONSTRAINT salesman_no FOREIGN KEY (salesman_no) REFERENCES sale_man(salesman_no);
 ALTER TABLE sales_order ADD CONSTRAINT del_type CHECK (del_type IN ('P', 'F'));
 ALTER TABLE sales_order ADD CONSTRAINT order_status CHECK (order_status IN ('Inprocess', 'Fulfilled', 'Backorder', 'Cancelled'));
 \d sales_order;
