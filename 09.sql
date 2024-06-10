@@ -31,5 +31,3 @@ END;
 $$ LANGUAGE plpgsql;
 
 SELECT ebill('CO1', 45);
-
-SELECT * FROM electricitybill;
