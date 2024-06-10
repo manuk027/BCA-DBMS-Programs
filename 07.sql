@@ -43,33 +43,37 @@ INSERT INTO MANAGER VALUES
 ('Anu', 'Keerthi'), 
 ('Jai', 'Devikha'); 
 
-SELECT * FROM EMPLOYEE;
-SELECT * FROM WORKS;
-SELECT * FROM COMPANY;
-SELECT * FROM MANAGER;
+(a)
+SELECT Employee_Name
+FROM WORKS
+WHERE Company_Name = 'Infosys';
 
-
+(b)
 SELECT EMPLOYEE.Employee_Name, EMPLOYEE.City
 FROM EMPLOYEE
 JOIN WORKS ON EMPLOYEE.Employee_Name = WORKS.Employee_Name
 WHERE WORKS.Company_Name = 'Wipro';
 
+(c)
 SELECT EMPLOYEE.Employee_Name, EMPLOYEE.City
 FROM EMPLOYEE
 JOIN WORKS ON EMPLOYEE.Employee_Name = WORKS.Employee_Name
 WHERE WORKS.Company_Name = 'Infosys' AND WORKS.Salary > 10000;
 
+(d)
 SELECT EMPLOYEE.Employee_Name, EMPLOYEE.City
 FROM EMPLOYEE
 JOIN WORKS ON EMPLOYEE.Employee_Name = WORKS.Employee_Name
 JOIN COMPANY ON WORKS.Company_Name = COMPANY.Company_Name
 WHERE EMPLOYEE.City = COMPANY.City;
 
+(e)
 SELECT EMPLOYEE.Employee_Name, EMPLOYEE.City
 FROM EMPLOYEE
 JOIN WORKS ON EMPLOYEE.Employee_Name = WORKS.Employee_Name
 WHERE WORKS.Company_Name <> 'Wipro';
 
+(f)
 SELECT Company_Name
 FROM WORKS
 GROUP BY Company_Name
