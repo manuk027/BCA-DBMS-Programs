@@ -1,18 +1,28 @@
-CREATE OR REPLACE FUNCTION fibonaci(n INTEGER) RETURNS INTEGER AS $$
+CREATE OR REPLACE FUNCTION get_fibonacci(limit_val INTEGER)
+RETURNS TABLE(fib_number INTEGER) AS
+$$
 DECLARE
-f1 INTEGER=0;
-f2 INTEGER=1;
-f3 INTEGER;
+a INTEGER := 0; 
+b INTEGER := 1; 
+temp INTEGER;
 BEGIN
-RAISE NOTICE '%', f1;
-RAISE NOTICE '%', f2;
-FOR i IN 3..n
-LOOP
-f3:=f2+f1;
-f1:=f2;
-f2:=f3;
-RAISE NOTICE '%', f2;
-END LOOP;
+IF limit_val < 1 THEN
+RAISE EXCEPTION 'Limit should be greater than or equal to 1'; 
+END IF; 
+
+RETURN QUERY SELECT a;
+
+IF limit_val >= 2 THEN 
+RETURN QUERY SELECT b;
+END IF;
+
+WHILE (a + b) <= limit_val LOOP 
+temp := a + b;
+RETURN QUERY SELECT temp; 
+a := b;
+b := temp;
+END LOOP; 
 END;
-$$ LANGUAGE PLPGSQL;
-SELECT fibonaci(20);
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_fibonacci(100);
