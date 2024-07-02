@@ -1,33 +1,33 @@
-CREATE TABLE electricitybill(
-    cust_no VARCHAR(8) PRIMARY KEY,
-    cust_name VARCHAR(20), 
-    units_consumed INT
-); 
-
-INSERT INTO electricitybill VALUES
-('CO1', 'Ajay', 45),
-('C02', 'Amith', 65),
-('C03', 'Rijo', 25),
-('C04', 'Devdhathan', 85); 
-
-SELECT * FROM electricitybill;
-
-CREATE OR REPLACE FUNCTION ebill(c_no VARCHAR(8), units INT) RETURNS INTEGER AS $$
+CREATE TABLE bill (
+cust_no INT PRIMARY KEY,
+cust_name VARCHAR(10),
+units_consumed INT,
+amount NUMERIC
+);
+INSERT INTO bill VALUES
+(1, 'Smitha', 250, NULL),
+(2, 'Smith', 50, NULL),
+(3, 'Mitha', 150, NULL),
+(4, 'Maneesh', 100, NULL),
+(5, 'Meera', 250, NULL);
+CREATE OR REPLACE FUNCTION bill_call()
+RETURNS VOID AS $$
 DECLARE
-amt INTEGER; 
-used INTEGER;
+cust_no INT;
+units_consumed INT;
+amount NUMERIC;
+cur CURSOR FOR SELECT cust_no, units_consumed FROM bill;
 BEGIN
-IF units <= 40 THEN 
-amt := 20;
-ELSIF units > 40 AND units <= 80 THEN 
-used := units - 40; 
-amt := 20 + (used * 0.40);
-ELSE 
-used := units - 80; 
-amt := 20 + (40 * 0.40) + (used * 1.40);
-END IF;
-RETURN amt;
+OPEN cur;
+LOOP
+FETCH cur INTO cust_no, units_consumed;
+EXIT WHEN NOT FOUND;
+amount := units_consumed * 3;
+UPDATE bill SET amount = amount WHERE cust_no = cust_no;
+END LOOP;
+CLOSE cur;
 END;
 $$ LANGUAGE plpgsql;
+SELECT bill_call();
+SELECT * FROM bill;
 
-SELECT ebill('CO1', 45);
